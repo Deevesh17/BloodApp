@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, StatusBar } from 'react-native';
 import externalstyle from '../Components/externalstyle';
 
-export default class Emergency_navigation extends Component {
+export default class Blood_camp_navigation extends Component {
 
     render() {
         const { navigate } = this.props.navigation;
@@ -11,7 +11,7 @@ export default class Emergency_navigation extends Component {
                 <StatusBar backgroundColor='#ff0038' barStyle="light-content" />
                 <View>
                     <TouchableOpacity
-                        onPress={() => navigate('Emergency_Blood')}
+                        onPress={() => navigate('Blood_Camp_Details')}
                         style={[externalstyle.CircleShapeView]}
                     >
                         <Text style={[externalstyle.ButtonText]}>Create</Text>
@@ -27,10 +27,10 @@ export default class Emergency_navigation extends Component {
                 </View>
                 <View>
                     <TouchableOpacity
-                        // onPress={() => navigate('Emegency_cancel')}
+                        onPress={() => navigate('Camp_login')}
                         style={[externalstyle.CircleShapeView]}
                     >
-                        <Text style={[externalstyle.ButtonText]}>Message to Donner</Text>
+                        <Text style={[externalstyle.ButtonText]}>Blood Bank</Text>
                     </TouchableOpacity>
                 </View>
 

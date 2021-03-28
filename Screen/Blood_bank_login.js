@@ -192,7 +192,7 @@ const Blood_bank_login = ({ navigation }) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('Signup')}
+                            onPress={() => navigation.navigate('Camp_Signup')}
                             style={[externalstyle.signIn, {
                                 borderColor: '#ff0038',
                                 borderWidth: 1,

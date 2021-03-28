@@ -118,69 +118,74 @@ const Doctor_signup = ({ navigation }) => {
     }
 
     const signupfunc = async (username, email, password, confirm_password, current_date, mobile_number, age, blood_group, location) => {
-        if (username.length == 0 || email.length == 0) {
-            Alert.alert('Wrong Input!', 'Username and email are not to be empty.', [
-                { text: 'Okay' }
-            ]);
-        }
-        else if (password.length == 0 || confirm_password.length == 0) {
-            Alert.alert('Wrong Input!', 'password and confirm password are not to be empty.', [
-                { text: 'Okay' }
-            ]);
-        }
-        else if (password != confirm_password) {
-            Alert.alert('Wrong Input!', 'password and confirm password are mismatched.', [
-                { text: 'Okay' }
-            ]);
-        }
-        else {
-            try {
-                var myHeaders = new Headers();
-                myHeaders.append("Content-Type", "application/json");
-                var raw = JSON.stringify({ "usr": "Administrator", "pwd": "2417" });
-                var requestOptions = {
-                    method: 'POST',
-                    headers: myHeaders,
-                    body: raw,
-                    redirect: 'follow'
-                };
-                var responce = await fetch("http://192.168.43.108:8008/api/method/login", requestOptions).catch(error => console.log('error', error));
-                cookie = responce["headers"]["map"]["set-cookie"].split(";")[0]
-                myHeaders.append("Cookie", cookie);
-                raw = JSON.stringify({ "username": username, "email": email, "password": password, "current_date": current_date, "mobile_number": mobile_number, "age": age, "blood_group": blood_group, "location": location });
-                var requestOptions = {
-                    method: 'POST',
-                    headers: myHeaders,
-                    body: raw,
-                    redirect: 'follow'
-                };
-                responce = await fetch("http://192.168.43.108:8008/api/method/blood_donation.signup_api.signup", requestOptions).catch(error => console.log('error', error));
-                var resp = await responce.json()
-                if (responce.status = 200) {
-                    console.log(resp["message"]["msg"])
-                    var greetings = "Congrats!!"
-                    if (resp["message"]["msg"] == "User Already Exist") {
-                        greetings = "Alert!!";
-                        Alert.alert(greetings, resp["message"]["msg"], [
-                            { text: 'Okay' }
-                        ]);
-                    }
-                    else{
-                        Alert.alert(greetings, resp["message"]["msg"], [
-                            { text: 'Okay' }
-                        ]);
-                        navigation.navigate('login')
-                    }
+        // if (username.length == 0 || email.length == 0) {
+        //     Alert.alert('Wrong Input!', 'Username and email are not to be empty.', [
+        //         { text: 'Okay' }
+        //     ]);
+        // }
+        // else if (password.length == 0 || confirm_password.length == 0) {
+        //     Alert.alert('Wrong Input!', 'password and confirm password are not to be empty.', [
+        //         { text: 'Okay' }
+        //     ]);
+        // }
+        // else if (password != confirm_password) {
+        //     Alert.alert('Wrong Input!', 'password and confirm password are mismatched.', [
+        //         { text: 'Okay' }
+        //     ]);
+        // }
+        // else {
+        //     try {
+        //         var myHeaders = new Headers();
+        //         myHeaders.append("Content-Type", "application/json");
+        //         var raw = JSON.stringify({ "usr": "Administrator", "pwd": "2417" });
+        //         var requestOptions = {
+        //             method: 'POST',
+        //             headers: myHeaders,
+        //             body: raw,
+        //             redirect: 'follow'
+        //         };
+        //         var responce = await fetch("http://192.168.43.108:8008/api/method/login", requestOptions).catch(error => console.log('error', error));
+        //         cookie = responce["headers"]["map"]["set-cookie"].split(";")[0]
+        //         myHeaders.append("Cookie", cookie);
+        //         raw = JSON.stringify({ "username": username, "email": email, "password": password, "current_date": current_date, "mobile_number": mobile_number, "age": age, "blood_group": blood_group, "location": location });
+        //         var requestOptions = {
+        //             method: 'POST',
+        //             headers: myHeaders,
+        //             body: raw,
+        //             redirect: 'follow'
+        //         };
+        //         responce = await fetch("http://192.168.43.108:8008/api/method/blood_donation.signup_api.signup", requestOptions).catch(error => console.log('error', error));
+        //         var resp = await responce.json()
+        //         if (responce.status = 200) {
+        //             console.log(resp["message"]["msg"])
+        //             var greetings = "Congrats!!"
+        //             if (resp["message"]["msg"] == "User Already Exist") {
+        //                 greetings = "Alert!!";
+        //                 Alert.alert(greetings, resp["message"]["msg"], [
+        //                     { text: 'Okay' }
+        //                 ]);
+        //             }
+        //             else {
+        //                 Alert.alert(greetings, resp["message"]["msg"], [
+        //                     { text: 'Okay' }
+        //                 ]);
+        //                 navigation.navigate('login')
+        //             }
 
 
-                }
-            }
-            catch (err) {
-                Alert.alert('Wrong Input!', 'Network Unreachable.', [
-                    { text: 'Okay' }
-                ]);
-            }
-        }
+        //         }
+        //     }
+        //     catch (err) {
+        //         Alert.alert('Wrong Input!', 'Network Unreachable.', [
+        //             { text: 'Okay' }
+        //         ]);
+        //     }
+        // }
+        Alert.alert("NOTE.", "YOU ARE DETAILS HAVE BEEN SUBMITTED TO THE ADMIN FOR APPROVAL.", [
+            { text: 'Okay', onPress: () => navigation.navigate('Doctor_login') }
+        ]);
+        // }
+
     }
 
     return (
@@ -239,6 +244,7 @@ const Doctor_signup = ({ navigation }) => {
                             placeholder={data.current_date}
                             style={[externalstyle.textInput, { color: '#000000' }]}
                             keyboardType="numeric"
+                            editable={false}
                             autoCapitalize="none"
                             onChangeText={(val) => handlePasswordChange(val)}
                         />
@@ -258,18 +264,12 @@ const Doctor_signup = ({ navigation }) => {
                     </View>
                     <Text style={[externalstyle.text_footer, {
                         marginTop: 35
-                    }]}>Age</Text>
+                    }]}>Gender</Text>
                     <View style={[externalstyle.action]}>
-                        <FontAwesome
-                            name="birthday-cake"
-                            color="#05375a"
-                            size={20}
-                        />
                         <TextInput
-                            placeholder="Your Age"
+                            placeholder="Your Gender"
                             style={[externalstyle.textInput]}
-                            keyboardType="numeric"
-                            autoCapitalize="none"
+                            autoCapitalize="words"
                             onChangeText={(val) => handleage(val)}
                         />
                     </View>
@@ -292,10 +292,10 @@ const Doctor_signup = ({ navigation }) => {
                     </View>
                     <Text style={[externalstyle.text_footer, {
                         marginTop: 35
-                    }]}>Blood Group</Text>
+                    }]}>Name Of The Hospital</Text>
                     <View style={[externalstyle.action]}>
                         <FontAwesome
-                            name="tint"
+                            name="hospital-o"
                             color="#05375a"
                             size={20}
                         />
@@ -321,6 +321,18 @@ const Doctor_signup = ({ navigation }) => {
                             autoCapitalize="none"
                             onChangeText={(val) => handlemobileno(val)}
                         />
+                    </View>
+                    <Text style={[externalstyle.text_footer, {
+                        marginTop: 35
+                    }]}>NMC Number</Text>
+                    <View style={[externalstyle.action]}>
+
+                        <TextInput
+                            placeholder="NMC Number"
+                            style={[externalstyle.textInput]}
+                            onChangeText={(val) => handleConfirmPasswordChange(val)}
+                        />
+
                     </View>
                     <Text style={[externalstyle.text_footer, {
                         marginTop: 35
