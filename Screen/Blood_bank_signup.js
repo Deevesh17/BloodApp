@@ -15,6 +15,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import externalstyle from '../Components/externalstyle';
 import DatePicker from "react-native-modal-datetime-picker";
+import { useState } from 'react';
+import MultiSelect from 'react-native-multiple-select';
 
 var cookie
 
@@ -35,6 +37,7 @@ const Blood_bank_signup = ({ navigation }) => {
         confirm_secureTextEntry: true,
     });
     // O−	O+	A−	A+	B−	B+	AB−	AB+
+    
     const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false);
 
     const showDatePicker = () => {
@@ -135,52 +138,52 @@ const Blood_bank_signup = ({ navigation }) => {
             ]);
         }
         else {
-            // try {
-            //     var myHeaders = new Headers();
-            //     myHeaders.append("Content-Type", "application/json");
-            //     var raw = JSON.stringify({ "usr": "Administrator", "pwd": "2417" });
-            //     var requestOptions = {
-            //         method: 'POST',
-            //         headers: myHeaders,
-            //         body: raw,
-            //         redirect: 'follow'
-            //     };
-            //     var responce = await fetch("http://192.168.43.108:8008/api/method/login", requestOptions).catch(error => console.log('error', error));
-            //     cookie = responce["headers"]["map"]["set-cookie"].split(";")[0]
-            //     myHeaders.append("Cookie", cookie);
-            //     raw = JSON.stringify({ "username": username, "email": email, "password": password, "current_date": current_date, "mobile_number": mobile_number, "age": age, "blood_group": blood_group, "location": location });
-            //     var requestOptions = {
-            //         method: 'POST',
-            //         headers: myHeaders,
-            //         body: raw,
-            //         redirect: 'follow'
-            //     };
-            //     responce = await fetch("http://192.168.43.108:8008/api/method/blood_donation.signup_api.signup", requestOptions).catch(error => console.log('error', error));
-            //     var resp = await responce.json()
-            //     if (responce.status = 200) {
-            //         console.log(resp["message"]["msg"])
-            //         var greetings = "Congrats!!"
-            //         if (resp["message"]["msg"] == "User Already Exist") {
-            //             greetings = "Alert!!";
-            //             Alert.alert(greetings, resp["message"]["msg"], [
-            //                 { text: 'Okay' }
-            //             ]);
-            //         }
-            //         else{
-            //             Alert.alert(greetings, resp["message"]["msg"], [
-            //                 { text: 'Okay' }
-            //             ]);
-            //             navigation.navigate('login')
-            //         }
+            try {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                var raw = JSON.stringify({ "usr": "Administrator", "pwd": "2417" });
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                };
+                var responce = await fetch("http://192.168.43.108:8008/api/method/login", requestOptions).catch(error => console.log('error', error));
+                cookie = responce["headers"]["map"]["set-cookie"].split(";")[0]
+                myHeaders.append("Cookie", cookie);
+                raw = JSON.stringify({ "username": username, "email": email, "password": password, "current_date": current_date, "mobile_number": mobile_number, "age": age, "blood_group": blood_group, "location": location });
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                };
+                responce = await fetch("http://192.168.43.108:8008/api/method/blood_donation.signup_api.signup", requestOptions).catch(error => console.log('error', error));
+                var resp = await responce.json()
+                if (responce.status = 200) {
+                    console.log(resp["message"]["msg"])
+                    var greetings = "Congrats!!"
+                    if (resp["message"]["msg"] == "User Already Exist") {
+                        greetings = "Alert!!";
+                        Alert.alert(greetings, resp["message"]["msg"], [
+                            { text: 'Okay' }
+                        ]);
+                    }
+                    else{
+                        Alert.alert(greetings, resp["message"]["msg"], [
+                            { text: 'Okay' }
+                        ]);
+                        navigation.navigate('login')
+                    }
 
 
-            //     }
-            // }
-            // catch (err) {
-            //     Alert.alert('Wrong Input!', 'Network Unreachable.', [
-            //         { text: 'Okay' }
-            //     ]);
-            // }
+                }
+            }
+            catch (err) {
+                Alert.alert('Wrong Input!', 'Network Unreachable.', [
+                    { text: 'Okay' }
+                ]);
+            }
             Alert.alert("NOTE.", "YOU ARE DETAILS HAVE BEEN SUBMITTED TO THE ADMIN FOR APPROVAL.", [
                 { text: 'Okay', onPress: () => navigation.navigate('Camp_login') }
             ]);
@@ -207,6 +210,7 @@ const Blood_bank_signup = ({ navigation }) => {
                         />
                         <TextInput
                             placeholder="Organization Name"
+                            placeholderTextColor="gray"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
                             autoCompleteType="name"
@@ -222,6 +226,7 @@ const Blood_bank_signup = ({ navigation }) => {
                         />
                         <TextInput
                             placeholder=" Organization Email"
+                            placeholderTextColor="gray"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
                             keyboardType="email-address"
@@ -239,12 +244,15 @@ const Blood_bank_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
-                            placeholder="Select Blood Groups"
+                            placeholder=" Available Blood Group"
+                            placeholderTextColor="gray"
                             style={[externalstyle.textInput]}
-                            keyboardType="numeric"
                             autoCapitalize="none"
-                            onChangeText={(val) => handleage(val)}
+                            onChangeText={(val) => emailchange(val)}
                         />
+                    </View>
+                    <View style={[externalstyle.textPrivate]}>
+                        <Text style={[externalstyle.color_textPrivate]}> Please Enter the Blood Group Followed by Comma(,)</Text>
                     </View>
                     <Text style={[externalstyle.text_footer, {
                         marginTop: 35
@@ -257,6 +265,7 @@ const Blood_bank_signup = ({ navigation }) => {
                         />
                         <TextInput
                             placeholder="Location"
+                            placeholderTextColor="gray"
                             style={[externalstyle.textInput]}
                             keyboardType="default"
                             autoCapitalize="none"
@@ -274,6 +283,7 @@ const Blood_bank_signup = ({ navigation }) => {
                         />
                         <TextInput
                             placeholder="Contact Number"
+                            placeholderTextColor="gray"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
                             onChangeText={(val) => handlemobileno(val)}
@@ -290,6 +300,7 @@ const Blood_bank_signup = ({ navigation }) => {
                         />
                         <TextInput
                             placeholder="Your Password"
+                            placeholderTextColor="gray"
                             secureTextEntry={data.secureTextEntry ? true : false}
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -310,6 +321,7 @@ const Blood_bank_signup = ({ navigation }) => {
                         />
                         <TextInput
                             placeholder="Confirm Your Password"
+                            placeholderTextColor="gray"
                             secureTextEntry={data.confirm_secureTextEntry ? true : false}
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"

@@ -121,6 +121,7 @@ const Doctor_login = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="email"
                             style={[externalstyle.textInput]}
                             onChangeText={(val) => textInputChange(val)}
@@ -149,6 +150,7 @@ const Doctor_login = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Password"
                             secureTextEntry={data.secureTextEntry ? true : false}
                             style={[externalstyle.textInput]}

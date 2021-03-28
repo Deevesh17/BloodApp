@@ -202,6 +202,7 @@ const signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Your Name"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -217,6 +218,7 @@ const signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder=" Your Email"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -236,6 +238,7 @@ const signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder={data.current_date}
                             style={[externalstyle.textInput, { color: '#000000' }]}
                             keyboardType="numeric"
@@ -266,6 +269,7 @@ const signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Your Age"
                             style={[externalstyle.textInput]}
                             keyboardType="numeric"
@@ -283,6 +287,7 @@ const signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Location"
                             style={[externalstyle.textInput]}
                             keyboardType="default"
@@ -300,6 +305,7 @@ const signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Your Blood Group"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -316,6 +322,7 @@ const signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Your Mobile Number"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -332,6 +339,7 @@ const signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Your Password"
                             secureTextEntry={data.secureTextEntry ? true : false}
                             style={[externalstyle.textInput]}
@@ -352,6 +360,7 @@ const signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Confirm Your Password"
                             secureTextEntry={data.confirm_secureTextEntry ? true : false}
                             style={[externalstyle.textInput]}

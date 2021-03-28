@@ -178,6 +178,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Name"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -193,6 +194,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder=" Hospital Details"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -207,6 +209,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder=" Hospital Landmark"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -221,6 +224,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="State"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -235,6 +239,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder=" District"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -251,6 +256,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder={data.end_date}
                             style={[externalstyle.textInput]}
                             editable={false}
@@ -279,6 +285,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Age"
                             style={[externalstyle.textInput]}
                             keyboardType="numeric"
@@ -296,6 +303,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Blood Group"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -312,6 +320,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Mobile Number"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -328,6 +337,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Secret Code"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"

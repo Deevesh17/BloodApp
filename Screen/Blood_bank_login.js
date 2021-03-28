@@ -12,6 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import externalstyle from '../Components/externalstyle';
+import MultiSelect from 'react-native-multiple-select';
 
 var cookie
 const Blood_bank_login = ({ navigation }) => {
@@ -121,6 +122,7 @@ const Blood_bank_login = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="email"
                             style={[externalstyle.textInput]}
                             onChangeText={(val) => textInputChange(val)}
@@ -149,6 +151,7 @@ const Blood_bank_login = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Password"
                             secureTextEntry={data.secureTextEntry ? true : false}
                             style={[externalstyle.textInput]}

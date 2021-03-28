@@ -207,6 +207,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Your Name"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -222,6 +223,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder=" Your Email"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -241,6 +243,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder={data.current_date}
                             style={[externalstyle.textInput, { color: '#000000' }]}
                             keyboardType="numeric"
@@ -267,6 +270,7 @@ const Doctor_signup = ({ navigation }) => {
                     }]}>Gender</Text>
                     <View style={[externalstyle.action]}>
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Your Gender"
                             style={[externalstyle.textInput]}
                             autoCapitalize="words"
@@ -283,6 +287,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Location"
                             style={[externalstyle.textInput]}
                             keyboardType="default"
@@ -300,6 +305,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Your Blood Group"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -316,6 +322,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Your Mobile Number"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -328,6 +335,7 @@ const Doctor_signup = ({ navigation }) => {
                     <View style={[externalstyle.action]}>
 
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="NMC Number"
                             style={[externalstyle.textInput]}
                             onChangeText={(val) => handleConfirmPasswordChange(val)}
@@ -344,6 +352,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Your Password"
                             secureTextEntry={data.secureTextEntry ? true : false}
                             style={[externalstyle.textInput]}
@@ -364,6 +373,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Confirm Your Password"
                             secureTextEntry={data.confirm_secureTextEntry ? true : false}
                             style={[externalstyle.textInput]}

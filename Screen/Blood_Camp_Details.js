@@ -21,6 +21,7 @@ const Emergency_Blood = ({ navigation }) => {
         hospita_details: '',
         hospital_landmark: '',
         end_date: '',
+        scode: '',
         age: '',
         mobile_number: '',
         blood_group: '',
@@ -60,7 +61,12 @@ const Emergency_Blood = ({ navigation }) => {
             });
         }
     }
-
+    const handlescode = (val) => {
+        setData({
+            ...data,
+            scode: val
+        });
+    }
     const handledate = (val) => {
         setData({
             ...data,
@@ -94,8 +100,8 @@ const Emergency_Blood = ({ navigation }) => {
 
     }
 
-    const bloodcamp = async (username, hospita_details, hospital_landmark, end_date, mobile_number, age, blood_group) => {
-        console.log(age);
+    const bloodcamp = async (username, hospita_details, hospital_landmark, end_date, mobile_number, age, blood_group,scode) => {
+        console.log(scode);
         console.log(hospital_landmark);
         console.log(hospita_details);
         console.log(mobile_number);
@@ -119,6 +125,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Name"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -134,6 +141,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Camp Organization"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -148,6 +156,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Camp Approval"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -164,6 +173,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Camp Venue"
                             style={[externalstyle.textInput]}
                             keyboardType="number-pad"
@@ -179,6 +189,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="State"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -193,6 +204,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder=" District"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -209,6 +221,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Camp Conducting Date"
                             style={[externalstyle.textInput]}
                             keyboardType="number-pad"
@@ -226,6 +239,7 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Camp Conducting Time"
                             style={[externalstyle.textInput]}
                             keyboardType="number-pad"
@@ -243,17 +257,35 @@ const Emergency_Blood = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
+                            placeholderTextColor = "gray"
                             placeholder="Organizer Mobile Number"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
                             onChangeText={(val) => handlemobileno(val)}
                         />
                     </View>
+                    <Text style={[externalstyle.text_footer, {
+                        marginTop: 35
+                    }]}>Secret Code</Text>
+                    <View style={[externalstyle.action]}>
+                        <Feather
+                            name="lock"
+                            color="#05375a"
+                            size={20}
+                        />
+                        <TextInput
+                            placeholderTextColor = "gray"
+                            placeholder="Secret Code"
+                            style={[externalstyle.textInput]}
+                            autoCapitalize="none"
+                            onChangeText={(val) => handlescode(val)}
+                        />
+                    </View>
 
                     <View style={[externalstyle.button]}>
                         <TouchableOpacity
                             style={[externalstyle.signIn]}
-                            onPress={() => { bloodcamp(data.username, data.hospita_details, data.hospital_landmark, data.end_date, data.mobile_number, data.age, data.blood_group) }}
+                            onPress={() => { bloodcamp(data.username, data.hospita_details, data.hospital_landmark, data.end_date, data.mobile_number, data.age, data.blood_group,data.scode) }}
                         >
                             <LinearGradient
                                 colors={['#ff0038', '#ff0038']}

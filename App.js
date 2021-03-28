@@ -21,6 +21,7 @@ import Blood_Camp_Details from "./Screen/Blood_Camp_Details";
 import Emergency_cancel from "./Screen/Emergency_cancel";
 import Emergency_navigation from "./Screen/Emergency_navigation";
 import Blood_bank_navigation from "./Screen/Blood_bank_navigation";
+import Blood_camp_cancel from "./Screen/Blood_camp_cancel";
 
 
 const Stack = createStackNavigator();
@@ -68,6 +69,16 @@ export default class App extends Component {
           }} />
           <Stack.Screen name="Emegency_cancel" component={Emergency_cancel} options={{
             title: "Emergency Cancel",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Blood_Cancel" component={Blood_camp_cancel} options={{
+            title: "Blood Camp Cancel",
             headerStyle: {
               backgroundColor: '#ff0038',
             },

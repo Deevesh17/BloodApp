@@ -19,7 +19,7 @@ export default class Blood_camp_navigation extends Component {
                 </View>
                 <View>
                     <TouchableOpacity
-                        onPress={() => navigate('Emegency_cancel')}
+                        onPress={() => navigate('Blood_Cancel')}
                         style={[externalstyle.CircleShapeView]}
                     >
                         <Text style={[externalstyle.ButtonText]}>Remove</Text>

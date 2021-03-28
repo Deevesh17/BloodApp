@@ -30,7 +30,7 @@ export default class Emergency_navigation extends Component {
                         // onPress={() => navigate('Emegency_cancel')}
                         style={[externalstyle.CircleShapeView]}
                     >
-                        <Text style={[externalstyle.ButtonText]}>Message to Donner</Text>
+                        <Text style={[externalstyle.ButtonText]}>Message to Donor</Text>
                     </TouchableOpacity>
                 </View>
 
