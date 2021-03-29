@@ -9,12 +9,10 @@ import Splash from './Screen/Splash';
 import Home from './Screen/Home';
 import Blood_Doner_Navigation from './Screen/Blood_Doner_Navigation';
 import Emergency_Blood from './Screen/Emergency_Blood';
-import Blood_camp from './Screen/Blood_camp';
 import login from "./Screen/login";
 import Doctor_login from "./Screen/Doctor_login";
 import Doctor_signup from "./Screen/Doctor_signup";
 import signup from "./Screen/signup";
-import Emergency_List from "./Screen/Emergency List";
 import Blood_bank_login from "./Screen/Blood_bank_login";
 import Blood_bank_signup from "./Screen/Blood_bank_signup";
 import Blood_Camp_Details from "./Screen/Blood_Camp_Details";
@@ -150,29 +148,11 @@ export default class App extends Component {
               fontWeight: 'bold',
             }
           }} />
-          <Stack.Screen name="Emergency_List" component={Emergency_List} options={{
-            title: "Emergency List",
-            headerStyle: {
-              backgroundColor: '#ff0038',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            }
-          }} />
+          
+
           {/* <Stack.Screen name="Blood Doner" component={Blood_donor} options={{
             headerShown: false
           }} /> */}
-          <Stack.Screen name="Blood_Camp" component={Blood_camp} options={{
-            title: "Blood Camp",
-            headerStyle: {
-              backgroundColor: '#ff0038',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            }
-          }} />
           <Stack.Screen name="Blood_Camp_Details" component={Blood_Camp_Details} options={{
             title: "Blood Camp Details",
             headerStyle: {

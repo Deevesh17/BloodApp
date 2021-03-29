@@ -78,7 +78,6 @@ const login = ({ navigation }) => {
         }
     }
     const loginHandle = async (email, password) => {
-        console.log(route.name);
         try {
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -93,7 +92,7 @@ const login = ({ navigation }) => {
             var resp = await responce.json()
             cookie = responce["headers"]["map"]["set-cookie"].split(";")[0]
             if (responce.status = 200) {
-                navigation.navigate('Blood_Camp', { mode: 'jane' })
+                navigation.navigate('Donor_navigation')
             }
 
         }

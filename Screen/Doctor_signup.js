@@ -26,9 +26,10 @@ const Doctor_signup = ({ navigation }) => {
         password: '',
         confirm_password: '',
         current_date: '',
-        age: '',
+        gender: '',
         mobile_number: '',
-        blood_group: '',
+        hospital: '',
+        mnc: '',
         location: '',
         check_textInputChange: false,
         secureTextEntry: true,
@@ -91,18 +92,24 @@ const Doctor_signup = ({ navigation }) => {
             location: val
         });
     }
-    const handleage = (val) => {
+    const handlegender = (val) => {
         setData({
             ...data,
-            age: val
+            gender: val
         });
     }
-    const handlebloodgroup = (val) => {
+    const handlemnc = (val) => {
         setData({
             ...data,
-            blood_group: val
+            mnc: val
         });
     }
+    const handlehospital = (val) => {
+        setData({
+            ...data,
+            hospital: val
+        });
+    }    
     const handlemobileno = (val) => {
         setData({
             ...data,
@@ -117,74 +124,68 @@ const Doctor_signup = ({ navigation }) => {
         });
     }
 
-    const signupfunc = async (username, email, password, confirm_password, current_date, mobile_number, age, blood_group, location) => {
-        // if (username.length == 0 || email.length == 0) {
-        //     Alert.alert('Wrong Input!', 'Username and email are not to be empty.', [
-        //         { text: 'Okay' }
-        //     ]);
-        // }
-        // else if (password.length == 0 || confirm_password.length == 0) {
-        //     Alert.alert('Wrong Input!', 'password and confirm password are not to be empty.', [
-        //         { text: 'Okay' }
-        //     ]);
-        // }
-        // else if (password != confirm_password) {
-        //     Alert.alert('Wrong Input!', 'password and confirm password are mismatched.', [
-        //         { text: 'Okay' }
-        //     ]);
-        // }
-        // else {
-        //     try {
-        //         var myHeaders = new Headers();
-        //         myHeaders.append("Content-Type", "application/json");
-        //         var raw = JSON.stringify({ "usr": "Administrator", "pwd": "2417" });
-        //         var requestOptions = {
-        //             method: 'POST',
-        //             headers: myHeaders,
-        //             body: raw,
-        //             redirect: 'follow'
-        //         };
-        //         var responce = await fetch("http://192.168.43.108:8008/api/method/login", requestOptions).catch(error => console.log('error', error));
-        //         cookie = responce["headers"]["map"]["set-cookie"].split(";")[0]
-        //         myHeaders.append("Cookie", cookie);
-        //         raw = JSON.stringify({ "username": username, "email": email, "password": password, "current_date": current_date, "mobile_number": mobile_number, "age": age, "blood_group": blood_group, "location": location });
-        //         var requestOptions = {
-        //             method: 'POST',
-        //             headers: myHeaders,
-        //             body: raw,
-        //             redirect: 'follow'
-        //         };
-        //         responce = await fetch("http://192.168.43.108:8008/api/method/blood_donation.signup_api.signup", requestOptions).catch(error => console.log('error', error));
-        //         var resp = await responce.json()
-        //         if (responce.status = 200) {
-        //             console.log(resp["message"]["msg"])
-        //             var greetings = "Congrats!!"
-        //             if (resp["message"]["msg"] == "User Already Exist") {
-        //                 greetings = "Alert!!";
-        //                 Alert.alert(greetings, resp["message"]["msg"], [
-        //                     { text: 'Okay' }
-        //                 ]);
-        //             }
-        //             else {
-        //                 Alert.alert(greetings, resp["message"]["msg"], [
-        //                     { text: 'Okay' }
-        //                 ]);
-        //                 navigation.navigate('login')
-        //             }
+    const signupfunc = async (username, email, password, confirm_password, current_date, mobile_number, gender, location,mnc,hospital) => {
+        if (username.length == 0 || email.length == 0) {
+            Alert.alert('Wrong Input!', 'Username and email are not to be empty.', [
+                { text: 'Okay' }
+            ]);
+        }
+        else if (password.length == 0 || confirm_password.length == 0) {
+            Alert.alert('Wrong Input!', 'password and confirm password are not to be empty.', [
+                { text: 'Okay' }
+            ]);
+        }
+        else if (password != confirm_password) {
+            Alert.alert('Wrong Input!', 'password and confirm password are mismatched.', [
+                { text: 'Okay' }
+            ]);
+        }
+        else {
+            try {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                var raw = JSON.stringify({ "usr": "Administrator", "pwd": "2417" });
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                };
+                var responce = await fetch("http://192.168.43.108:8008/api/method/login", requestOptions).catch(error => console.log('error', error));
+                cookie = responce["headers"]["map"]["set-cookie"].split(";")[0]
+                myHeaders.append("Cookie", cookie);
+                raw = JSON.stringify({ "username": data.username, "email": data.email, "password": data.password, "current_date" : data.current_date, "mobile_number": data.mobile_number, "gender": data.gender,"location": data.location,"mnc": data.mnc,"hospital": data.hospital });
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                };
+                responce = await fetch("http://192.168.43.108:8008/api/method/blood_donation.signup_api.doctorsignup", requestOptions).catch(error => console.log('error', error));
+                var resp = await responce.json()
+                if (responce.status = 200) {
+                    var greetings = "Congrats!!"
+                    if (resp["message"]["msg"] == "User Already Exist") {
+                        greetings = "Alert!!";
+                        Alert.alert(greetings, resp["message"]["msg"], [
+                            { text: 'Okay' }
+                        ]);
+                    }
+                    else {
+                        Alert.alert("NOTE.", "YOU ARE DETAILS HAVE BEEN SUBMITTED TO THE ADMIN FOR APPROVAL.", [
+                            { text: 'Okay', onPress: () => navigation.navigate('Doctor_login') }
+                        ]);                       
+                    }
+                }
+            }
+            catch (err) {
+                Alert.alert('Wrong Input!', 'Network Unreachable.', [
+                    { text: 'Okay' }
+                ]);
+            }
+        }
 
 
-        //         }
-        //     }
-        //     catch (err) {
-        //         Alert.alert('Wrong Input!', 'Network Unreachable.', [
-        //             { text: 'Okay' }
-        //         ]);
-        //     }
-        // }
-        Alert.alert("NOTE.", "YOU ARE DETAILS HAVE BEEN SUBMITTED TO THE ADMIN FOR APPROVAL.", [
-            { text: 'Okay', onPress: () => navigation.navigate('Doctor_login') }
-        ]);
-        // }
 
     }
 
@@ -207,7 +208,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
-                            placeholderTextColor = "gray"
+                            placeholderTextColor="gray"
                             placeholder="Your Name"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -223,7 +224,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
-                            placeholderTextColor = "gray"
+                            placeholderTextColor="gray"
                             placeholder=" Your Email"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -243,13 +244,12 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
-                            placeholderTextColor = "gray"
+                            placeholderTextColor="gray"
                             placeholder={data.current_date}
                             style={[externalstyle.textInput, { color: '#000000' }]}
                             keyboardType="numeric"
                             editable={false}
                             autoCapitalize="none"
-                            onChangeText={(val) => handlePasswordChange(val)}
                         />
                         <TouchableOpacity style={[externalstyle.calender_icon]} onPress={showDatePicker} >
                             <FontAwesome
@@ -270,11 +270,11 @@ const Doctor_signup = ({ navigation }) => {
                     }]}>Gender</Text>
                     <View style={[externalstyle.action]}>
                         <TextInput
-                            placeholderTextColor = "gray"
+                            placeholderTextColor="gray"
                             placeholder="Your Gender"
                             style={[externalstyle.textInput]}
                             autoCapitalize="words"
-                            onChangeText={(val) => handleage(val)}
+                            onChangeText={(val) => handlegender(val)}
                         />
                     </View>
                     <Text style={[externalstyle.text_footer, {
@@ -287,7 +287,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
-                            placeholderTextColor = "gray"
+                            placeholderTextColor="gray"
                             placeholder="Location"
                             style={[externalstyle.textInput]}
                             keyboardType="default"
@@ -305,11 +305,11 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
-                            placeholderTextColor = "gray"
+                            placeholderTextColor="gray"
                             placeholder="Your Blood Group"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
-                            onChangeText={(val) => handlebloodgroup(val)}
+                            onChangeText={(val) => handlehospital(val)}
                         />
                     </View>
                     <Text style={[externalstyle.text_footer, {
@@ -322,7 +322,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
-                            placeholderTextColor = "gray"
+                            placeholderTextColor="gray"
                             placeholder="Your Mobile Number"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
@@ -335,10 +335,10 @@ const Doctor_signup = ({ navigation }) => {
                     <View style={[externalstyle.action]}>
 
                         <TextInput
-                            placeholderTextColor = "gray"
+                            placeholderTextColor="gray"
                             placeholder="NMC Number"
                             style={[externalstyle.textInput]}
-                            onChangeText={(val) => handleConfirmPasswordChange(val)}
+                            onChangeText={(val) => handlemnc(val)}
                         />
 
                     </View>
@@ -352,7 +352,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
-                            placeholderTextColor = "gray"
+                            placeholderTextColor="gray"
                             placeholder="Your Password"
                             secureTextEntry={data.secureTextEntry ? true : false}
                             style={[externalstyle.textInput]}
@@ -373,7 +373,7 @@ const Doctor_signup = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
-                            placeholderTextColor = "gray"
+                            placeholderTextColor="gray"
                             placeholder="Confirm Your Password"
                             secureTextEntry={data.confirm_secureTextEntry ? true : false}
                             style={[externalstyle.textInput]}
@@ -391,7 +391,7 @@ const Doctor_signup = ({ navigation }) => {
                     <View style={[externalstyle.button]}>
                         <TouchableOpacity
                             style={[externalstyle.signIn]}
-                            onPress={() => { signupfunc(data.username, data.email, data.password, data.confirm_password, data.current_date, data.mobile_number, data.age, data.blood_group, data.location) }}
+                            onPress={() => { signupfunc(data.username, data.email, data.password,data.confirm_password, data.current_date, data.mobile_number, data.gender, data.location,data.mnc,data.hospital) }}
                         >
                             <LinearGradient
                                 colors={['#ff0038', '#ff0038']}

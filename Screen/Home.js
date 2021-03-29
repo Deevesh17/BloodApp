@@ -13,13 +13,13 @@ export default class Home extends Component {
             <StatusBar backgroundColor='#fff' barStyle="light-content" />
 
                 <TouchableOpacity
-                    onPress={() => navigate('Doctor')}
+                    onPress={() => navigate('Doctor_login')}
                     style={[externalstyle.CircleShapeView]}>
                     <View>
                         <Text style={[externalstyle.ButtonText]}>Doctor </Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigate('Donor_navigation')}
+                <TouchableOpacity onPress={() => navigate('login')}
                     style={[externalstyle.CircleShapeView]}
                 >
                     <Text style={[externalstyle.ButtonText]}>Blood donor</Text>

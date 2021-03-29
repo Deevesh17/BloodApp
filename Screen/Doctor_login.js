@@ -75,21 +75,41 @@ const Doctor_login = ({ navigation }) => {
         }
     }
     const loginHandle = async (email, password) => {
+        console.log(email)
+        console.log(password)
         try {
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            var raw = JSON.stringify({ "usr": email, "pwd": password });
+            var raw = JSON.stringify({ "usr": "Administrator", "pwd": "2417" });
             var requestOptions = {
                 method: 'POST',
                 headers: myHeaders,
                 body: raw,
                 redirect: 'follow'
             };
-            var responce = await fetch("http://192.168.43.108:8008/api/method/login", requestOptions);
-            var resp = await responce.json()
+            var responce = await fetch("http://192.168.43.108:8008/api/method/login", requestOptions).catch(error => console.log('error', error));
             cookie = responce["headers"]["map"]["set-cookie"].split(";")[0]
+            myHeaders.append("Cookie", cookie);
+            raw = JSON.stringify({ "usr": email, "pwd": password });
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            responce = await fetch("http://192.168.43.108:8008/api/method/blood_donation.log.doc_login", requestOptions).catch(error => console.log('error', error));
+            var resp = await responce.json()
             if (responce.status = 200) {
-                navigation.navigate('Blood_Camp', { mode: 'jane' })
+                var greetings = "Congrats!!"
+                if (resp["message"]["msg"] == "User Not Exist" || resp["message"]["msg"] == "Your ID Is Not Approved" || resp["message"]["msg"] == "Invalid Password") {
+                    greetings = "Alert!!";
+                    Alert.alert(greetings, resp["message"]["msg"], [
+                        { text: 'Okay' }
+                    ]);
+                }
+                else {
+                    navigation.navigate('Doctor')
+                }
             }
 
         }
@@ -121,7 +141,7 @@ const Doctor_login = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
-                            placeholderTextColor = "gray"
+                            placeholderTextColor="gray"
                             placeholder="email"
                             style={[externalstyle.textInput]}
                             onChangeText={(val) => textInputChange(val)}
@@ -150,7 +170,7 @@ const Doctor_login = ({ navigation }) => {
                             size={20}
                         />
                         <TextInput
-                            placeholderTextColor = "gray"
+                            placeholderTextColor="gray"
                             placeholder="Password"
                             secureTextEntry={data.secureTextEntry ? true : false}
                             style={[externalstyle.textInput]}
@@ -175,9 +195,9 @@ const Doctor_login = ({ navigation }) => {
                             }
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity>
+                    {/* <TouchableOpacity>
                         <Text style={{ color: '#009387', marginTop: 15 }}>Forgot password?</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <View style={[externalstyle.button]}>
                         <TouchableOpacity
                             style={[externalstyle.signIn]}
