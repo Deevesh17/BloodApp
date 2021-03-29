@@ -1,20 +1,28 @@
 import { StyleSheet } from 'react-native';
 import Elevations from "react-native-elevation";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 const externalstyle = StyleSheet.create({
     appbackground:
     {
-        flex:300,
+        flex: 300,
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
     },
     emergencybackground:
     {
-        flex:300,
+        flex: 300,
         margin: 10,
         backgroundColor: 'white',
         justifyContent: 'center',
+    },
+    doctorbackground:
+    {
+        flex: 200,
+        margin: 30,
+        marginLeft: 30,
+        backgroundColor: 'white',
+        justifyContent: 'space-around',
     },
     splash_text:
     {
@@ -59,6 +67,21 @@ const externalstyle = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ff0038'
     },
+    messagecontainer: {
+        flex: 1,
+        paddingTop: 40,
+        paddingHorizontal: 20,
+        backgroundColor: '#fff',
+    },
+    msgitem: {
+        flex: 1,
+        marginHorizontal: 10,
+        marginTop: 24,
+        borderRadius: 40,
+        padding: 30,
+        backgroundColor: '#ff0038',
+        fontSize: 24,
+    },
     header: {
         flex: 1,
         justifyContent: 'flex-end',
@@ -78,6 +101,11 @@ const externalstyle = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 30
     },
+    msg: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 20
+    },
     text_footer: {
         color: '#05375a',
         fontSize: 18
@@ -85,6 +113,14 @@ const externalstyle = StyleSheet.create({
     action: {
         flexDirection: 'row',
         marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#f2f2f2',
+        paddingBottom: 5
+    },
+    doctoraction: {
+        flexDirection: 'row',
+        marginTop: 10,
+        marginLeft: 20,
         borderBottomWidth: 1,
         borderBottomColor: '#f2f2f2',
         paddingBottom: 5
