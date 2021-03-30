@@ -108,7 +108,7 @@ const Doctor_login = ({ navigation }) => {
                     ]);
                 }
                 else {
-                    navigation.navigate('Doctor')
+                    navigation.replace('Doctor')
                 }
             }
 

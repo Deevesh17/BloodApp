@@ -15,7 +15,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import externalstyle from '../Components/externalstyle';
 
 var cookie
-const message_data = ({ navigation, route }) => {
+const Camp_data = ({ navigation, route }) => {
     console.log(route.params["details"]);
     const [people, setPeople] = React.useState(route.params["details"]);
     return (
@@ -34,4 +34,4 @@ const message_data = ({ navigation, route }) => {
         </View>
     );
 };
-export default message_data;
+export default Camp_data;

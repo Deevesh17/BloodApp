@@ -14,36 +14,20 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import externalstyle from '../Components/externalstyle';
 
 var cookie
-const Emergency_cancel = ({ navigation }) => {
+const Blood_update = ({ navigation ,route}) => {
 
     const [data, setData] = React.useState({
-        name: '',
-        mobile_no: '',
-        scode: '',
+          blood: '',
     });
-    const handlename = (val) => {
-        setData({
-            ...data,
-            name: val
-        });
-    }
-    const handlemobileno = (val) => {
-        setData({
-            ...data,
-            mobile_no: val
-        });
-    }
     const handlescode = (val) => {
         setData({
             ...data,
-            scode: val
+            blood: val
         });
     }
 
-    const remove = async (name, mobile_no, scode) => {
-        console.log(name);
-        console.log(mobile_no);
-        console.log(scode);
+    const update = async (blood) => { 
+        console.log(route.params)
         try {
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -57,18 +41,18 @@ const Emergency_cancel = ({ navigation }) => {
             var responce = await fetch("http://192.168.43.108:8008/api/method/login", requestOptions).catch(error => console.log('error', error));
             cookie = responce["headers"]["map"]["set-cookie"].split(";")[0]
             myHeaders.append("Cookie", cookie);
-            raw = JSON.stringify({ "name": name, "mobile": mobile_no, "scode": scode });
+            raw = JSON.stringify({ "email": route.params["email"], "blood": blood });
             var requestOptions = {
                 method: 'POST',
                 headers: myHeaders,
                 body: raw,
                 redirect: 'follow'
             };
-            responce = await fetch("http://192.168.43.108:8008/api/method/blood_donation.emergency.remove_emergency", requestOptions).catch(error => console.log('error', error));
+            responce = await fetch("http://192.168.43.108:8008/api/method/blood_donation.blood_bank.update", requestOptions).catch(error => console.log('error', error));
             var resp = await responce.json()
             if (responce.status = 200) {
                 var greetings = "NOTE"
-                if (resp["message"]["msg"] == "Your Secret Code doesn't match.") {
+                if (resp["message"]["msg"] == "User Not Exist") {
                     greetings = "Alert!!";
                     Alert.alert(greetings, resp["message"]["msg"], [
                         { text: 'Okay' }
@@ -76,7 +60,7 @@ const Emergency_cancel = ({ navigation }) => {
                 }
                 else {
                     Alert.alert(greetings, resp["message"]["msg"],[
-                        { text: 'Okay', onPress: () => navigation.navigate('Emergency') }
+                        { text: 'Okay', onPress: () => navigation.navigate('Home') }
                     ]);
                 }
             }
@@ -100,61 +84,30 @@ return (
             style={[externalstyle.footer]}
         >
 
-            <View style={[externalstyle.footer]}>
-                <Text style={[externalstyle.text_footer]}>Name</Text>
-                <View style={[externalstyle.action]}>
-                    <FontAwesome
-                        name="user-o"
-                        color="#05375a"
-                        size={20}
-                    />
-                    <TextInput
-                        placeholderTextColor = "gray"
-                        placeholder="Name"
-                        style={[externalstyle.textInput]}
-                        onChangeText={(val) => handlename(val)}
-                        autoCapitalize="none"
-                    />
-
-                </View>
+            <View style={[externalstyle.footer]}>                
                 <Text style={[externalstyle.text_footer, {
                     marginTop: 35
-                }]}>Mobile</Text>
+                }]}>Update Available Blood Group</Text>
                 <View style={[externalstyle.action]}>
                     <FontAwesome
-                        name="phone"
+                        name="tint"
                         color="#05375a"
                         size={20}
                     />
                     <TextInput
                         placeholderTextColor = "gray"
-                        placeholder="Mobile"
+                        placeholder="Update Available Blood Group"
                         style={[externalstyle.textInput]}
-                        autoCapitalize="none"
-                        onChangeText={(val) => handlemobileno(val)}
-                    />
-                </View>
-                <Text style={[externalstyle.text_footer, {
-                    marginTop: 35
-                }]}>Secret Code</Text>
-                <View style={[externalstyle.action]}>
-                    <FontAwesome
-                        name="lock"
-                        color="#05375a"
-                        size={20}
-                    />
-                    <TextInput
-                        placeholderTextColor = "gray"
-                        placeholder="Secret Code"
-                        style={[externalstyle.textInput]}
-                        autoCapitalize="none"
                         onChangeText={(val) => handlescode(val)}
                     />
                 </View>
+                <View style={[externalstyle.textPrivate]}>
+                        <Text style={[externalstyle.color_textPrivate]}> Please Enter the Blood Group Followed by Comma(,)</Text>
+                    </View>
                 <View style={[externalstyle.button]}>
                     <TouchableOpacity
                         style={[externalstyle.signIn]}
-                        onPress={() => { remove(data.name, data.mobile_no, data.scode) }}
+                        onPress={() => { update(data.blood) }}
                     >
                         <LinearGradient
                             colors={['#ff0038', '#ff0038']}
@@ -162,7 +115,7 @@ return (
                         >
                             <Text style={[externalstyle.textSign, {
                                 color: '#fff'
-                            }]}>Remove</Text>
+                            }]}>Update</Text>
                         </LinearGradient>
                     </TouchableOpacity>
                 </View>
@@ -172,4 +125,4 @@ return (
     </View>
 );
 };
-export default Emergency_cancel;
+export default Blood_update;

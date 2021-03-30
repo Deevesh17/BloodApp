@@ -81,6 +81,8 @@ const externalstyle = StyleSheet.create({
         padding: 30,
         backgroundColor: '#ff0038',
         fontSize: 24,
+        alignItems: 'stretch',
+
     },
     header: {
         flex: 1,

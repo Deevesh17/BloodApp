@@ -27,32 +27,14 @@ const Blood_bank_signup = ({ navigation }) => {
         email: '',
         password: '',
         confirm_password: '',
-        current_date: '',
-        age: '',
-        mobile_number: '',
-        blood_group: '',
+        avbg: '',
+        conno: '',
         location: '',
         check_textInputChange: false,
         secureTextEntry: true,
         confirm_secureTextEntry: true,
     });
-    // O−	O+	A−	A+	B−	B+	AB−	AB+
     
-    const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false);
-
-    const showDatePicker = () => {
-        setDatePickerVisibility(true);
-    };
-
-    const hideDatePicker = () => {
-        setDatePickerVisibility(false);
-    };
-
-    const handleConfirm = (date) => {
-        data.current_date = date.toDateString()
-        hideDatePicker();
-    };
-
     const emailchange = (val) => {
         if (val.length !== 0) {
             setData({
@@ -95,22 +77,17 @@ const Blood_bank_signup = ({ navigation }) => {
             location: val
         });
     }
-    const handleage = (val) => {
+    const handleavg = (val) => {
         setData({
             ...data,
-            age: val
+            avbg: val
         });
     }
-    const handlebloodgroup = (val) => {
+   
+    const handlecono = (val) => {
         setData({
             ...data,
-            blood_group: val
-        });
-    }
-    const handlemobileno = (val) => {
-        setData({
-            ...data,
-            mobile_number: val
+            conno: val
         });
     }
 
@@ -121,7 +98,7 @@ const Blood_bank_signup = ({ navigation }) => {
         });
     }
 
-    const signupfunc = async (username, email, password, confirm_password, current_date, mobile_number, age, blood_group, location) => {
+    const signupfunc = async (username, email, password, confirm_password, conno, avbg, location) => {
         if (username.length == 0 || email.length == 0) {
             Alert.alert('Wrong Input!', 'Username and email are not to be empty.', [
                 { text: 'Okay' }
@@ -151,14 +128,14 @@ const Blood_bank_signup = ({ navigation }) => {
                 var responce = await fetch("http://192.168.43.108:8008/api/method/login", requestOptions).catch(error => console.log('error', error));
                 cookie = responce["headers"]["map"]["set-cookie"].split(";")[0]
                 myHeaders.append("Cookie", cookie);
-                raw = JSON.stringify({ "username": username, "email": email, "password": password, "current_date": current_date, "mobile_number": mobile_number, "age": age, "blood_group": blood_group, "location": location });
+                raw = JSON.stringify({ "username": username, "email": email, "password": password, "conno": conno, "avbg": avbg,"location": location });
                 var requestOptions = {
                     method: 'POST',
                     headers: myHeaders,
                     body: raw,
                     redirect: 'follow'
                 };
-                responce = await fetch("http://192.168.43.108:8008/api/method/blood_donation.signup_api.signup", requestOptions).catch(error => console.log('error', error));
+                responce = await fetch("http://192.168.43.108:8008/api/method/blood_donation.signup_api.banksignup", requestOptions).catch(error => console.log('error', error));
                 var resp = await responce.json()
                 if (responce.status = 200) {
                     console.log(resp["message"]["msg"])
@@ -170,10 +147,9 @@ const Blood_bank_signup = ({ navigation }) => {
                         ]);
                     }
                     else{
-                        Alert.alert(greetings, resp["message"]["msg"], [
-                            { text: 'Okay' }
+                        Alert.alert("NOTE.", "YOU ARE DETAILS HAVE BEEN SUBMITTED TO THE ADMIN FOR APPROVAL.", [
+                            { text: 'Okay', onPress: () => navigation.navigate('Camp_login') }
                         ]);
-                        navigation.navigate('login')
                     }
 
 
@@ -183,10 +159,7 @@ const Blood_bank_signup = ({ navigation }) => {
                 Alert.alert('Wrong Input!', 'Network Unreachable.', [
                     { text: 'Okay' }
                 ]);
-            }
-            Alert.alert("NOTE.", "YOU ARE DETAILS HAVE BEEN SUBMITTED TO THE ADMIN FOR APPROVAL.", [
-                { text: 'Okay', onPress: () => navigation.navigate('Camp_login') }
-            ]);
+            }            
         }
     }
 
@@ -248,7 +221,7 @@ const Blood_bank_signup = ({ navigation }) => {
                             placeholderTextColor="gray"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
-                            onChangeText={(val) => emailchange(val)}
+                            onChangeText={(val) => handleavg(val)}
                         />
                     </View>
                     <View style={[externalstyle.textPrivate]}>
@@ -286,7 +259,7 @@ const Blood_bank_signup = ({ navigation }) => {
                             placeholderTextColor="gray"
                             style={[externalstyle.textInput]}
                             autoCapitalize="none"
-                            onChangeText={(val) => handlemobileno(val)}
+                            onChangeText={(val) => handlecono(val)}
                         />
                     </View>
                     <Text style={[externalstyle.text_footer, {
@@ -338,7 +311,7 @@ const Blood_bank_signup = ({ navigation }) => {
                     <View style={[externalstyle.button]}>
                         <TouchableOpacity
                             style={[externalstyle.signIn]}
-                            onPress={() => { signupfunc(data.username, data.email, data.password, data.confirm_password, data.current_date, data.mobile_number, data.age, data.blood_group, data.location) }}
+                            onPress={() => { signupfunc(data.username, data.email, data.password, data.confirm_password, data.conno, data.avbg, data.location) }}
                         >
                             <LinearGradient
                                 colors={['#ff0038', '#ff0038']}

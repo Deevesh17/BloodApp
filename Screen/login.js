@@ -8,16 +8,13 @@ import {
     StatusBar
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import externalstyle from '../Components/externalstyle';
-import {useRoute} from '@react-navigation/native';
 
 var cookie
 const login = ({ navigation }) => {
-    const route = useRoute();
     const [data, setData] = React.useState({
         email: '',
         password: '',
@@ -92,7 +89,7 @@ const login = ({ navigation }) => {
             var resp = await responce.json()
             cookie = responce["headers"]["map"]["set-cookie"].split(";")[0]
             if (responce.status = 200) {
-                navigation.navigate('Donor_navigation')
+                navigation.replace('Donor_navigation',{cookie})
             }
 
         }

@@ -23,6 +23,11 @@ import Blood_camp_cancel from "./Screen/Blood_camp_cancel";
 import Emergency_message from "./Screen/Emergency_message";
 import Doctor_update from "./Screen/Doctor_update";
 import message_data from "./Screen/message_data";
+import Blood_update from "./Screen/Blood_update";
+import Blood_details from "./Screen/Blood_details";
+import Camp_data from "./Screen/Camp_data";
+import Emergency_data from "./Screen/Emergency_data";
+import Donor_update from "./Screen/Donor_update";
 
 
 const Stack = createStackNavigator();
@@ -68,6 +73,26 @@ export default class App extends Component {
               fontWeight: 'bold',
             }
           }} />
+          <Stack.Screen name="Emedata" component={Emergency_data} options={{
+            title: "Emergency Blood",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="camp_data" component={Camp_data} options={{
+            title: "Blood Camp",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
           <Stack.Screen name="Message" component={message_data} options={{
             title: "Emergency Message",
             headerStyle: {
@@ -78,8 +103,38 @@ export default class App extends Component {
               fontWeight: 'bold',
             }
           }} />
+          <Stack.Screen name="Bank" component={Blood_details} options={{
+            title: "Blood Bank",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
           <Stack.Screen name="Emegency_cancel" component={Emergency_cancel} options={{
             title: "Emergency Cancel",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Blood_update" component={Blood_update} options={{
+            title: "Update Blood Group",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+           <Stack.Screen name="Donor_update" component={Donor_update} options={{
+            title: "Profile",
             headerStyle: {
               backgroundColor: '#ff0038',
             },
