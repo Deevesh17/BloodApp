@@ -1,112 +1,226 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
-import type {Node} from 'react';
+import "react-native-gesture-handler";
+import React, { Component } from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+  NavigationContainer, Button
+} from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import Splash from './Screen/Splash';
+import Home from './Screen/Home';
+import Blood_Doner_Navigation from './Screen/Blood_Doner_Navigation';
+import Emergency_Blood from './Screen/Emergency_Blood';
+import login from "./Screen/login";
+import Doctor_login from "./Screen/Doctor_login";
+import Doctor_signup from "./Screen/Doctor_signup";
+import signup from "./Screen/signup";
+import Blood_bank_login from "./Screen/Blood_bank_login";
+import Blood_bank_signup from "./Screen/Blood_bank_signup";
+import Blood_Camp_Details from "./Screen/Blood_Camp_Details";
+import Emergency_cancel from "./Screen/Emergency_cancel";
+import Emergency_navigation from "./Screen/Emergency_navigation";
+import Blood_bank_navigation from "./Screen/Blood_bank_navigation";
+import Blood_camp_cancel from "./Screen/Blood_camp_cancel";
+import Emergency_message from "./Screen/Emergency_message";
+import Doctor_update from "./Screen/Doctor_update";
+import message_data from "./Screen/message_data";
+import Blood_update from "./Screen/Blood_update";
+import Blood_details from "./Screen/Blood_details";
+import Camp_data from "./Screen/Camp_data";
+import Emergency_data from "./Screen/Emergency_data";
+import Donor_update from "./Screen/Donor_update";
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+const Stack = createStackNavigator();
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+export default class App extends Component {
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+  render() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Splash">
+          <Stack.Screen name="Splash" component={Splash} options={{
+            headerShown: false
+          }} />
+          <Stack.Screen name="Home" component={Home} options={{
+            headerShown: false
+          }} />
+          <Stack.Screen name="login" component={login} options={{
+            headerShown: false
+          }} />
+          <Stack.Screen name="Signup" component={signup} options={{
+            headerShown: false
+          }} />
+          <Stack.Screen name="Doctor_login" component={Doctor_login} options={{
+            headerShown: false
+          }} />
+          <Stack.Screen name="Doctor_Signup" component={Doctor_signup} options={{
+            headerShown: false
+          }} />
+          <Stack.Screen name="Camp_login" component={Blood_bank_login} options={{
+            headerShown: false
+          }} />
+          <Stack.Screen name="Camp_Signup" component={Blood_bank_signup} options={{
+            headerShown: false
+          }} />
+          <Stack.Screen name="Emergency_Blood" component={Emergency_Blood} options={{
+            title: "Emergency Blood",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Emedata" component={Emergency_data} options={{
+            title: "Emergency Blood",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="camp_data" component={Camp_data} options={{
+            title: "Blood Camp",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Message" component={message_data} options={{
+            title: "Emergency Message",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Bank" component={Blood_details} options={{
+            title: "Blood Bank",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Emegency_cancel" component={Emergency_cancel} options={{
+            title: "Emergency Cancel",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Blood_update" component={Blood_update} options={{
+            title: "Update Blood Group",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+           <Stack.Screen name="Donor_update" component={Donor_update} options={{
+            title: "Profile",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Emergency_message" component={Emergency_message} options={{
+            title: "Emergency Message",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Blood_Cancel" component={Blood_camp_cancel} options={{
+            title: "Blood Camp Cancel",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Emergency" component={Emergency_navigation} options={{
+            title: "Emergency",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Doctor" component={Doctor_update} options={{
+            title: "Doctor",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Blood_navigation" component={Blood_bank_navigation} options={{
+            title: "Blood Camp",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          <Stack.Screen name="Donor_navigation" component={Blood_Doner_Navigation} options={{
+            title: "Blood Donor",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+          
 
-export default App;
+          {/* <Stack.Screen name="Blood Doner" component={Blood_donor} options={{
+            headerShown: false
+          }} /> */}
+          <Stack.Screen name="Blood_Camp_Details" component={Blood_Camp_Details} options={{
+            title: "Blood Camp Details",
+            headerStyle: {
+              backgroundColor: '#ff0038',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
+
+  }
+}
